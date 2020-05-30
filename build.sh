@@ -1,1 +1,1 @@
-docker build -t eks-deployer -f Dockerfile .
+docker build --no-cache -t eks-deployer -f Dockerfile .
