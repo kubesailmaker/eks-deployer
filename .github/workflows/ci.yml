@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  schedule:
+    - cron:  '18 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+      
+    - name: git actions
+      uses: srt32/git-actions@v0.0.3
+    
+    - name: sync with fork origin frequently
+      run: |
+        git config user.email "github-actions@github.com"
+        git config user.name "Git Bot"
+        git remote add fork https://github.com/skhatri/eks-deployer.git
+        git fetch fork --tags
+        git push origin --tags
